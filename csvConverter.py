@@ -4,10 +4,10 @@ import pandas as pd
 import numpy as np
 
 dictionary = {}
-df=pd.read_csv("RETTLdata.csv")
-expArray=df["MappedExpertise"]
-org = df["Organization"]
-act = df["Actors"]
+df=pd.read_csv("authors_aggregation3(reran).csv")
+expArray=df["author_topics_all"]
+org = df["author_subtopic_all"]
+act = df["author_name_variants"]
 dict_org = {}
 
 i=0
@@ -92,7 +92,7 @@ def main():
     # Part1 create a hierarchival dict of dicts of dicts.
     # The leaf cells are however just the last element of each row
     tree = {}
-    with open('csvRETTL.csv') as csvfile:
+    with open('authors_topic_subtopic5NoDup(reran)2.csv') as csvfile:
         reader = csv.reader(csvfile)
         for rid, row in enumerate(reader):
             if rid == 0:  # skip header row
