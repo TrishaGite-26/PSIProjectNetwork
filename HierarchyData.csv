@@ -1,0 +1,78 @@
+Topic,Subtopic,Count
+Topic,,
+Sensing and imaging technologies,Topic,
+Data analytics and modeling,Topic,
+AgTech and Automation,Topic,
+Genetics and genomics,Topic,
+Plant ecology and microbial biology,Topic,
+plant health and pathology and pest mgmt,Topic,
+Sustainable ag and resource management,Topic,
+Policy and Society and Economics,Topic,
+Knowledge Transfer and Outreach,Topic,
+AgTech and Automation,Agtech,5841
+AgTech and Automation,CPS,41
+AgTech and Automation,IoT,3287
+AgTech and Automation,automation,4720
+AgTech and Automation,digital ag,415
+AgTech and Automation,precision ag,4916
+AgTech and Automation,robotics,2533
+Data analytics and modeling,artificial intelligence,3381
+Data analytics and modeling,computer vision,2768
+Data analytics and modeling,data analytics,4353
+Data analytics and modeling,data science,5867
+Data analytics and modeling,digital twins,3848
+Data analytics and modeling,geospatial,3826
+Data analytics and modeling,machine learning,4075
+Data analytics and modeling,modeling,6494
+Data analytics and modeling,proteomics,5577
+Genetics and genomics,CRISPR,6193
+Genetics and genomics,Genetics,6580
+Genetics and genomics,breeding,5809
+Genetics and genomics,gene expression,5023
+Genetics and genomics,genomics,7502
+Genetics and genomics,plant improvement,5763
+Knowledge Transfer and Outreach,education,2390
+Knowledge Transfer and Outreach,extension,703
+Knowledge Transfer and Outreach,outreach,4303
+Knowledge Transfer and Outreach,science communication,6493
+Knowledge Transfer and Outreach,social sciences,4346
+Knowledge Transfer and Outreach,workforce development,811
+Plant ecology and microbial biology,Ecology,6642
+Plant ecology and microbial biology,fungi,5654
+Plant ecology and microbial biology,microbes,7071
+Plant ecology and microbial biology,nutrient cycle,4391
+Plant ecology and microbial biology,plant signalling,3674
+Plant ecology and microbial biology,plant-microbe interactions,1161
+Plant ecology and microbial biology,soil,6712
+Policy and Society and Economics,Ag economics,3169
+Policy and Society and Economics,community,5879
+Policy and Society and Economics,decision support,3995
+Policy and Society and Economics,food security,4800
+Policy and Society and Economics,food systems,6052
+Policy and Society and Economics,labor,1850
+Policy and Society and Economics,policy,4286
+Policy and Society and Economics,regulatory science,6208
+Policy and Society and Economics,resource economics,4277
+Policy and Society and Economics,risk management,3065
+Policy and Society and Economics,society,1134
+Policy and Society and Economics,supply chain,2029
+Sensing and imaging technologies,imaging,5201
+Sensing and imaging technologies,mass spectronomy,794
+Sensing and imaging technologies,sensing,5860
+Sensing and imaging technologies,sensors,2054
+Sustainable ag and resource management,bioremediation,2468
+Sustainable ag and resource management,carbon capture,4140
+Sustainable ag and resource management,conservation,6260
+Sustainable ag and resource management,materials engineering,5075
+Sustainable ag and resource management,regenerative ag,5922
+Sustainable ag and resource management,renewable energy,5216
+Sustainable ag and resource management,resilient ag,3095
+Sustainable ag and resource management,sustainable ag,5707
+Sustainable ag and resource management,synthetic biology,5722
+Sustainable ag and resource management,waste management,2263
+plant health and pathology and pest mgmt,biotic stress,5404
+plant health and pathology and pest mgmt,disease control,5808
+plant health and pathology and pest mgmt,nematodes,3918
+plant health and pathology and pest mgmt,pathology,5524
+plant health and pathology and pest mgmt,pest mgmt,5716
+plant health and pathology and pest mgmt,plant health,6371
