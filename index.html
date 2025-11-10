@@ -1,9 +1,12 @@
 <meta charset="utf-8">
 <style>
+	/* Chart container */
 	#chart {
 	  max-width: 100%;
-	  overflow:auto;
+	  overflow: auto;
+	  position: relative;
 	}
+
 	text {
 	  pointer-events: none;
 	}
@@ -48,7 +51,7 @@
 	    font-size: 14px;
 	    padding: 10px;
 	    cursor: pointer;
-	    overflow:none;
+	    overflow: none;
 	}
 	.textdiv .title {
 	    font-size: 100%;
@@ -62,28 +65,46 @@
 	    padding:0px;
 	    font-size:15px !important;
 	}
-	/* New styling for author list */
+
+	/* Author list styling */
 	#authorList {
 	    font-family: sans-serif;
-	    font-size: 15px;
-	    padding: 15px;
+	    font-size: 20px;
+	    padding: 10px;
+	    margin: 0;
 	    max-height: 500px;
 	    overflow-y: auto;
 	    border: 1px solid #ccc;
 	    border-radius: 10px;
 	    background: #f8f9fa;
-	    margin-top: 10px;
+	    position: absolute;
+	    top: 100px;
+	    left: 30px;               /* moved left to avoid legend overlap */
+	    width: 850px;             /* #SIZE HERE - adjust width as needed */
+	    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+	    z-index: 999;
+	}
+	#authorList h3 {
+	    margin: 0;
+	    padding: 0 0 8px 0;
+	    font-size: 16px;
 	}
 	#authorList ul {
 	    list-style-type: none;
 	    padding-left: 0;
+	    margin: 0;
 	}
 	#authorList li {
 	    padding: 6px 10px;
 	    border-bottom: 1px solid #ddd;
+	    font-size: 14px;
 	}
 	#authorList li:last-child {
 	    border-bottom: none;
+	}
+
+	svg {
+	  display: block;
 	}
 </style>
 
@@ -93,10 +114,10 @@
 <script>
 var el_id = 'chart';
 var obj = document.getElementById(el_id);
-var divWidth = obj.offsetWidth;
+var divWidth = obj.offsetWidth || 1200;
 var margin = {top: 70, right: 300, bottom: 20, left: 30},
     width = divWidth * 0.7,
-    height = divWidth * 0.5,
+    height = Math.max(divWidth * 0.5, 400),
     formatNumber = d3.format(","),
     transitioning;
 
@@ -141,8 +162,8 @@ d3.json("jsonRETTL2.json", function(data) {
             if(!raw || raw.toLowerCase() === "topic") return;
             var key = raw.toLowerCase();
             if(!(key in mapping)){
-                mapping[key] = raw;    
-                orderedKeys.push(key); 
+                mapping[key] = raw;
+                orderedKeys.push(key);
             }
         });
 
@@ -176,25 +197,19 @@ d3.json("jsonRETTL2.json", function(data) {
         display(root);
 
         function display(d) {
-            // Remove old author list if exists
             d3.select("#authorList").remove();
 
-            // if we are at author level (depth = 3)
             if (!d.children && d.depth === 3) {
-                // Create author list container
                 var authorDiv = d3.select("#" + el_id)
                     .append("div")
                     .attr("id", "authorList");
 
                 authorDiv.append("h3").text("Authors in " + d.parent.data.name);
                 var list = authorDiv.append("ul");
-
-                // list authors
                 d.parent.children.forEach(function(a){
                     list.append("li").text(a.data.name);
                 });
-
-                return; // stop rendering treemap boxes
+                return;
             }
 
             grandparent
@@ -244,7 +259,6 @@ d3.json("jsonRETTL2.json", function(data) {
                 if (transitioning || !d) return;
                 transitioning = true;
 
-                // When transitioning into authors, clear boxes and show list
                 if (d.depth === 2 && d.children && d.children[0].children == null) {
                     d3.selectAll(".depth").remove();
                     d3.select("#authorList").remove();
@@ -286,10 +300,10 @@ d3.json("jsonRETTL2.json", function(data) {
         }
 
         function rect(rect) {
-            rect.attr("x", function (d) { return x(d.x0); })
-                .attr("y", function (d) { return y(d.y0); })
-                .attr("width", function (d) { return x(d.x1) - x(d.x0); })
-                .attr("height", function (d) { return y(d.y1) - y(d.y0); })
+            rect.attr("x", d => x(d.x0))
+                .attr("y", d => y(d.y0))
+                .attr("width", d => x(d.x1) - x(d.x0))
+                .attr("height", d => y(d.y1) - y(d.y0))
                 .attr("fill", function (d) {
                     let name = d.data.name ? d.data.name.toString().trim().toLowerCase() : "";
                     let parent = d.parent && d.parent.data && d.parent.data.name ? d.parent.data.name.toString().trim().toLowerCase() : "";
@@ -303,19 +317,19 @@ d3.json("jsonRETTL2.json", function(data) {
         }
 
         for(var i=0;i<pColor.length;i++){
-            var key = pColor[i];             
+            var key = pColor[i];
             var label = mapping[key] || key;
 
             svg.append("rect")
                 .attr('width',18)
                 .attr('height',18)
                 .attr("x", width+20)
-                .attr("y", -20 + i*30) 
+                .attr("y", -20 + i*30)
                 .style("fill", function(){ return color(key); });
 
             svg.append("text")
                 .attr("x", width+45)
-                .attr("y", -10 + i*30) 
+                .attr("y", -10 + i*30)
                 .text(label)
                 .attr("text-anchor", "left")
                 .style("alignment-baseline", "right");
